@@ -1,6 +1,13 @@
-const Avatar = ({size, user}) => {
+const Avatar = ({size, user, changeAvatar}) => {
     return (
-        <img className={`user-avatar ${size ?? ''}`} src={user.avatar} alt={user.name} />
+        <img
+            onClick={() => {
+                const url = prompt('Enter new avatar url');
+                console.log(url);
+            }}
+            className={`user-avatar ${size ?? ''}`}
+            src={user.avatar}
+            alt={user.name} />
     );
 };
 
