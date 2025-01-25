@@ -23,10 +23,27 @@ function App() {
         setUser(prevState => ({...prevState, name: name || prevState.name}));
     }
 
+    const increaseFollowers = () => {
+        setStats(prevState => ({...prevState, followers: prevState.followers + 1}));
+    }
+
+    const decreaseFollowers = () => {
+        setStats(prevState => ({...prevState, followers: prevState.followers > 0 ? prevState.followers -1 : prevState.followers }));
+    }
+
+    const increaseFollowing = () => {
+        setStats(prevState => ({...prevState, following: prevState.following + 1}));
+    }
+
+    const decreaseFollowing = () => {
+        setStats(prevState => ({...prevState, following: prevState.following > 0 ? prevState.following -1 : prevState.following }));
+    }
+
+
     return (
         <div className={'app'}>
             <TwitterContext.Provider value={{
-                user, stats, changeAvatar, changeName
+                user, stats, changeAvatar, changeName, increaseFollowers,decreaseFollowers, increaseFollowing, decreaseFollowing
             }}>
                 <Navigation/>
                 <Body/>
