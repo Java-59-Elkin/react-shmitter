@@ -3,7 +3,7 @@ const Avatar = ({size, user, changeAvatar}) => {
         <img
             onClick={() => {
                 const url = prompt('Enter new avatar url');
-                console.log(url);
+                changeAvatar(url);
             }}
             className={`user-avatar ${size ?? ''}`}
             src={user.avatar}
