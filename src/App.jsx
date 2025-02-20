@@ -3,6 +3,7 @@ import Navigation from "./components/Navigation.jsx";
 import Body from "./components/Body.jsx";
 import {useState} from "react";
 import {TwitterContext} from "./utils/context.js";
+import Stats from "./components/Stats.jsx";
 
 function App() {
     const [user, setUser] = useState({
@@ -10,10 +11,10 @@ function App() {
         avatar: 'https://gravatar.com/avatar/000?d=monsterid'
     });
 
-    const [stats, setStats] = useState({
-        followers: 42,
-        following: 10
-    });
+    // const [stats, setStats] = useState({
+    //     followers: 42,
+    //     following: 10
+    // });
 
     const changeAvatar = url => {
         setUser(prevState => ({...prevState, avatar: url || prevState.avatar}));
@@ -23,27 +24,27 @@ function App() {
         setUser(prevState => ({...prevState, name: name || prevState.name}));
     }
 
-    const increaseFollowers = () => {
-        setStats(prevState => ({...prevState, followers: prevState.followers + 1}));
-    }
+    // const increaseFollowers = () => {
+    //     setStats(prevState => ({...prevState, followers: prevState.followers + 1}));
+    // }
+    //
+    // const decreaseFollowers = () => {
+    //     setStats(prevState => ({...prevState, followers: prevState.followers > 0 ? prevState.followers -1 : prevState.followers }));
+    // }
 
-    const decreaseFollowers = () => {
-        setStats(prevState => ({...prevState, followers: prevState.followers > 0 ? prevState.followers -1 : prevState.followers }));
-    }
-
-    const increaseFollowing = () => {
-        setStats(prevState => ({...prevState, following: prevState.following + 1}));
-    }
-
-    const decreaseFollowing = () => {
-        setStats(prevState => ({...prevState, following: prevState.following > 0 ? prevState.following -1 : prevState.following }));
-    }
+    // const increaseFollowing = () => {
+    //     setStats(prevState => ({...prevState, following: prevState.following + 1}));
+    // }
+    //
+    // const decreaseFollowing = () => {
+    //     setStats(prevState => ({...prevState, following: prevState.following > 0 ? prevState.following -1 : prevState.following }));
+    // }
 
 
     return (
         <div className={'app'}>
             <TwitterContext.Provider value={{
-                user, stats, changeAvatar, changeName, increaseFollowers,decreaseFollowers, increaseFollowing, decreaseFollowing
+                user, changeAvatar, changeName
             }}>
                 <Navigation/>
                 <Body/>

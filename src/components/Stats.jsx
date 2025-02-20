@@ -1,9 +1,12 @@
 import Avatar from "./Avatar.jsx";
 import {useContext} from "react";
 import {TwitterContext} from "../utils/context.js";
+import {useSelector} from "react-redux";
 
 const Stats = () => {
-    const {user, stats, increaseFollowers, decreaseFollowers, increaseFollowing, decreaseFollowing} = useContext(TwitterContext);
+    const {user, stats, increaseFollowing, decreaseFollowing} = useContext(TwitterContext);
+
+    const followers = useSelector(state => state.followers);
 
     return (
         <div className={'user-stats'}>
@@ -12,16 +15,8 @@ const Stats = () => {
                 {user.name}
             </div>
             <div className={'stats'}>
-                <div
-                    onClick={() => {
-                        increaseFollowers();
-                    }}
-                    onContextMenu={(e) => {
-                        e.preventDefault();
-                        decreaseFollowers();
-                    }}
-                >
-                    Followers: {stats.followers}
+                <div>
+                    Followers: {followers}
                 </div>
                 <div
                 onClick={() => {
