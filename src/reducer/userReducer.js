@@ -1,6 +1,10 @@
 import {ADD, REMOVE} from "../actions/userActions.js";
 
-export const userChanger = (state, action) => {
+const initialState = {
+    followers: 10 // Установили начальное значение
+};
+
+export const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD:
             return {...state, followers: state.followers + action.payload};
