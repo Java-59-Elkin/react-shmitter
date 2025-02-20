@@ -1,14 +1,12 @@
-import {ADD, REMOVE} from "../actions/userActions.js";
+import {INCREASE_FOLLOWERS, DECREASE_FOLLOWERS} from "../actions/userActions.js";
 
-const initialState = {
-    followers: 10 // Установили начальное значение
-};
+const initialState = { followers: 10 };
 
-export const userReducer = (state = initialState, action) => {
+export const followersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD:
+        case INCREASE_FOLLOWERS:
             return {...state, followers: state.followers + action.payload};
-        case REMOVE:
+        case DECREASE_FOLLOWERS:
             return {...state, followers: state.followers === 0 ? state.followers : state.followers - action.payload};
         default:
             return state;

@@ -1,8 +1,6 @@
-import {userReducer} from "../reducer/userReducer.js";
+import {rootReducer} from "../reducer/rootReducer.js";
 import {legacy_createStore as createStore} from "redux";
 
-const initialState = {
-    followers: 10
-}
 
-export const store = createStore(userReducer, initialState);
+
+export const store = createStore(rootReducer);

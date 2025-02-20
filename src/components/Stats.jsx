@@ -2,11 +2,13 @@ import Avatar from "./Avatar.jsx";
 import {useContext} from "react";
 import {TwitterContext} from "../utils/context.js";
 import {useDispatch, useSelector} from "react-redux";
-import {add, remove} from "../actions/userActions.js";
+import {increaseFollowers, decreaseFollowers, increaseFollowing, decreaseFollowing} from "../actions/userActions.js";
 
 const Stats = () => {
-    const {user, stats, increaseFollowing, decreaseFollowing} = useContext(TwitterContext);
+    const {user} = useContext(TwitterContext);
+
     const followers = useSelector(state => state.followers);
+    const following = useSelector(state => state.following);
     const dispatch = useDispatch();
     const sum = 1;
 
@@ -18,24 +20,23 @@ const Stats = () => {
             </div>
             <div className={'stats'}>
                 <div
-                    onClick={() => dispatch(add(sum))}
+                    onClick={() => dispatch(increaseFollowers(sum))}
                     onContextMenu={(e) => {
                         e.preventDefault();
-                        dispatch(remove(sum));
+                        dispatch(decreaseFollowers(sum));
                     }}
                 >
-                    Followers: {followers}
+                    Followers: {followers.followers}
                 </div>
-                {/*<div*/}
-                {/*onClick={() => {*/}
-                {/*    increaseFollowing();*/}
-                {/*}}*/}
-                {/*onContextMenu={(e) => {*/}
-                {/*    e.preventDefault();*/}
-                {/*    decreaseFollowing();*/}
-                {/*}}>*/}
-                {/*    Following: {stats.following}*/}
-                {/*</div>*/}
+                <div
+                    onClick={() => dispatch(increaseFollowing(sum))}
+                    onContextMenu={(e) => {
+                        e.preventDefault();
+                        dispatch(decreaseFollowing(sum));
+                    }}
+                >
+                    Following: {following.following}
+                </div>
             </div>
         </div>
     );
